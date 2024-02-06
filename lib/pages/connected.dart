@@ -1,5 +1,7 @@
 import "package:flutter/material.dart";
 
+import "../components/volume_slider.dart";
+
 class Connected extends StatefulWidget {
   const Connected({Key? key}) : super(key: key);
 
@@ -20,6 +22,7 @@ class _ConnectedState extends State<Connected> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 const Icon(Icons.bluetooth_connected_rounded, size: 25),
+                const SizedBox(width: 5),
                 // TODO: this should display the name of the connected device
                 Text("Verbunden", style: Theme.of(context).textTheme.bodyMedium),
               ],
@@ -27,7 +30,17 @@ class _ConnectedState extends State<Connected> {
           ),
         ),
         body: const Row(
-          children: <Widget>[],
+          children: <Widget>[
+            SizedBox(
+              width: 200,
+              child: Center(
+                child: VolumeSlider(),
+              ),
+            ),
+            Flexible(
+              child: Center(),
+            )
+          ],
         ),
         bottomSheet: const Column(),
       ),

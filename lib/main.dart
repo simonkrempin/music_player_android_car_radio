@@ -48,9 +48,9 @@ final ThemeData darkTheme = ThemeData(
     onBackground: Color(0xFFf4e2e2),
     error: Color(0xFFe87f7f),
     secondary: Color(0xFFf4e2e2),
-    onSecondary: Color(0xFF0a0a0a),
+    onSecondary: Color(0xFF333333),
     onError: Color(0xFFf4e2e2),
-    surface: Color(0xFF0a0a0a),
+    surface: Color(0xFF262626),
     onSurface: Color(0xFFf4e2e2),
   ),
   textTheme: const TextTheme(
@@ -60,6 +60,12 @@ final ThemeData darkTheme = ThemeData(
       color: Color(0xFFe87f7f),
       // fontWeight: FontWeight.bold,
       // letterSpacing: 0.15,
+    ),
+    bodyLarge: TextStyle(
+      fontFamily: "PoppinsMedium",
+      fontSize: 20.0,
+      color: Color(0xFFf4e2e2),
+      fontWeight: FontWeight.bold,
     ),
     bodyMedium: TextStyle(
       fontFamily: "PoppinsRegular",
