@@ -87,7 +87,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isConnected = false;
+  bool _isConnected = true;
   ThemeMode _themeMode = ThemeMode.dark;
 
   @override
