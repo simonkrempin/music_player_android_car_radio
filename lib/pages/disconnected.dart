@@ -10,13 +10,13 @@ class Disconnected extends StatefulWidget {
 class _DisconnectedState extends State<Disconnected> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Icon(Icons.bluetooth_rounded, size: 100),
-            Text("Verbinde dein Gerät", style: TextStyle(fontSize: 20)),
+            const Icon(Icons.bluetooth_rounded, size: 100),
+            Text("Verbinde dein Gerät", style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
       ),
