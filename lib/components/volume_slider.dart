@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:volume_controller/volume_controller.dart";
 
 class VolumeSlider extends StatefulWidget {
   const VolumeSlider({Key? key}) : super(key: key);
@@ -8,7 +9,22 @@ class VolumeSlider extends StatefulWidget {
 }
 
 class _VolumeSliderState extends State<VolumeSlider> {
-  double _currentSliderValue = 10;
+  double _volume = 0;
+
+  @override
+  void initState() {
+    VolumeController().showSystemUI = false;
+    VolumeController().getVolume().then((value) {
+      _volume = value;
+      setState(() {});
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,20 +48,19 @@ class _VolumeSliderState extends State<VolumeSlider> {
                   valueIndicatorShape: const PaddleSliderValueIndicatorShape(),
                 ),
                 child: Slider(
-                  value: _currentSliderValue,
+                  value: _volume,
                   min: 0,
-                  max: 40,
-                  divisions: 40,
+                  max: 1,
                   onChanged: (double value) {
-                    setState(() {
-                      _currentSliderValue = value;
-                    });
+                    VolumeController().setVolume(value);
+                    _volume = value;
+                    setState(() {});
                   },
                 ),
               ),
             ),
           ),
-          Text("${_currentSliderValue.round()}", style: Theme.of(context).textTheme.bodyLarge),
+          Text("${(_volume * 100).round()}", style: Theme.of(context).textTheme.bodyLarge),
         ],
       ),
     );
