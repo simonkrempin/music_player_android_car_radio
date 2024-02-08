@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../components/button_controls.dart";
 import "../components/volume_slider.dart";
 
 class Connected extends StatefulWidget {
@@ -39,7 +40,12 @@ class _ConnectedState extends State<Connected> {
             ),
             Flexible(
               child: Center(),
-            )
+            ),
+            SizedBox(
+                width: 200,
+                child: Center(
+                  child: ButtonControls(),
+                ))
           ],
         ),
         bottomSheet: const Column(),
