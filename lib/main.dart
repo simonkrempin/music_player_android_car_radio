@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import "context/theme_context.dart";
 import "pages/disconnected.dart";
 import "pages/connected.dart";
+import "services/bluetooth.dart";
 
 final ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme(
@@ -98,10 +99,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isConnected = true;
+  bool _isConnected = false;
 
-  listenerFunction() {
-    setState(() {});
+  @override
+  void initState() {
+    super.initState();
+
+    isDeviceConnected().then((bool isConnected) {
+      setState(() {
+        _isConnected = isConnected;
+      });
+    });
   }
 
   @override
