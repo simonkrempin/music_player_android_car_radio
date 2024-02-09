@@ -2,18 +2,13 @@ import "package:flutter/material.dart";
 import 'package:screen_brightness/screen_brightness.dart';
 
 import "./button_control_button.dart";
+import "../services/screen_brightness.dart";
 
 class ButtonControls extends StatefulWidget {
   const ButtonControls({super.key});
 
   @override
   State<ButtonControls> createState() => _ButtonControlsState();
-}
-
-enum BrightnessSections {
-  low,
-  medium,
-  high,
 }
 
 enum ThemeModes {
@@ -23,29 +18,17 @@ enum ThemeModes {
 
 class _ButtonControlsState extends State<ButtonControls> {
   ThemeModes _selectedMode = ThemeModes.dark;
-  BrightnessSections _selectedBrightness = BrightnessSections.low;
+  Brightness _selectedBrightness = Brightness.low;
 
   @override
   void initState() {
     super.initState();
 
-    ScreenBrightness().current.then((double brightness) {
+    getBrightness().then((Brightness brightness) {
       setState(() {
-        _selectedBrightness = _brightnessSections(brightness);
+        _selectedBrightness = brightness;
       });
     });
-  }
-
-  BrightnessSections _brightnessSections(double brightness) {
-    if (brightness < 0.33) {
-      return BrightnessSections.low;
-    }
-
-    if (brightness < 0.66) {
-      return BrightnessSections.medium;
-    }
-
-    return BrightnessSections.high;
   }
 
   @override
@@ -65,31 +48,34 @@ class _ButtonControlsState extends State<ButtonControls> {
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = BrightnessSections.low;
+                      _selectedBrightness = Brightness.low;
+                      setScreenBrightness(_selectedBrightness);
                     });
                   },
                   icon: Icons.brightness_1_outlined,
-                  selectedState: _selectedBrightness == BrightnessSections.low,
+                  selectedState: _selectedBrightness == Brightness.low,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = BrightnessSections.medium;
+                      _selectedBrightness = Brightness.medium;
+                      setScreenBrightness(_selectedBrightness);
                     });
                   },
                   icon: Icons.brightness_6_rounded,
-                  selectedState: _selectedBrightness == BrightnessSections.medium,
+                  selectedState: _selectedBrightness == Brightness.medium,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = BrightnessSections.high;
+                      _selectedBrightness = Brightness.high;
+                      setScreenBrightness(_selectedBrightness);
                     });
                   },
                   icon: Icons.brightness_high_rounded,
-                  selectedState: _selectedBrightness == BrightnessSections.high,
+                  selectedState: _selectedBrightness == Brightness.high,
                 ),
               ],
             ),
