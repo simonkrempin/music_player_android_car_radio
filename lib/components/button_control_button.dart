@@ -21,7 +21,7 @@ class _ButtonControlButtonState extends State<ButtonControlButton> {
       },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
-          widget.selectedState ? Theme.of(context).colorScheme.onBackground : Theme.of(context).colorScheme.onSecondary,
+          widget.selectedState ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.onSurface,
         ),
         fixedSize: MaterialStateProperty.all<Size>(
           const Size(50, 65),
@@ -38,7 +38,7 @@ class _ButtonControlButtonState extends State<ButtonControlButton> {
       child: Center(
         child: Icon(
           widget.icon,
-          color: widget.selectedState ? Theme.of(context).colorScheme.background : Theme.of(context).colorScheme.onBackground,
+          color: widget.selectedState ? Theme.of(context).colorScheme.onSecondary : Theme.of(context).colorScheme.secondary,
         ),
       ),
     );

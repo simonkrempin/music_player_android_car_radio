@@ -1,4 +1,5 @@
 import "package:flutter_blue/flutter_blue.dart";
+import 'dart:async';
 
 FlutterBlue flutterBlue = FlutterBlue.instance;
 BluetoothDevice? device;
@@ -52,4 +53,37 @@ Future<void> play() async {
       await characteristic.write([0x01]);
     }
   }
+}
+
+Future<void> pause() async {
+  BluetoothDevice? device = await getFirstConnectedDevice();
+  if (device != null) {
+    List<BluetoothCharacteristic> characteristics = await getTrackInformation(device);
+    for (BluetoothCharacteristic characteristic in characteristics) {
+      await characteristic.write([0x02]);
+    }
+  }
+}
+
+Timer? _timer;
+List<BluetoothDevice> listeners = [];
+void addListener(newListener) {
+
+}
+
+void listenForBluetoothStateChanges() {
+  _timer = Timer.periodic(const Duration(seconds: 1), (Timer timer) async {
+    bool isConnected = await isDeviceConnected();
+    if (!isConnected) {
+      device = null;
+    }
+  });
+}
+
+void stopListeningForBluetoothStateChanges() {
+  _timer?.cancel();
+}
+
+void removeListener() {
+
 }

@@ -39,7 +39,7 @@ class _VolumeSliderState extends State<VolumeSlider> {
               quarterTurns: -1,
               child: SliderTheme(
                 data: SliderThemeData(
-                  activeTrackColor: Theme.of(context).colorScheme.onBackground,
+                  activeTrackColor: Theme.of(context).colorScheme.secondary,
                   inactiveTrackColor: Theme.of(context).colorScheme.surface,
                   trackShape: const RoundedRectSliderTrackShape(),
                   trackHeight: 100,

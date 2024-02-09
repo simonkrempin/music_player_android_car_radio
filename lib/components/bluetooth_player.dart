@@ -33,7 +33,7 @@ class _BluetoothPlayerState extends State<BluetoothPlayer> {
         const SizedBox(height: 32),
         Center(
           child: SizedBox(
-            width: 300,
+            width: 400,
             child: Slider(
               value: 0.5,
               onChanged: (double value) {},
@@ -46,17 +46,17 @@ class _BluetoothPlayerState extends State<BluetoothPlayer> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             IconButton(
-              icon: const Icon(Icons.skip_previous_rounded),
+              icon: Icon(Icons.skip_previous_rounded, color: Theme.of(context).colorScheme.onBackground),
               onPressed: () {},
               iconSize: 32,
             ),
             IconButton(
-              icon: const Icon(Icons.pause_rounded),
+              icon: Icon(Icons.pause_rounded, color: Theme.of(context).colorScheme.onBackground),
               onPressed: () {},
               iconSize: 32,
             ),
             IconButton(
-              icon: const Icon(Icons.skip_next_rounded),
+              icon: Icon(Icons.skip_next_rounded, color: Theme.of(context).colorScheme.onBackground),
               onPressed: () {},
               iconSize: 32,
             ),

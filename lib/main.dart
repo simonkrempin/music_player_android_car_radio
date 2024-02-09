@@ -12,13 +12,13 @@ final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     primary: Color(0xFFe87f7f),
     onPrimary: Color(0xFFf4e2e2),
-    onBackground: Color(0xFFf4e2e2),
+    onBackground: Color(0xff000000),
     error: Color(0xFFe87f7f),
-    secondary: Color(0xFFf4e2e2),
-    onSecondary: Color(0xFF0a0a0a),
+    secondary: Color(0xff000000),
+    onSecondary: Color(0xffffffff),
     onError: Color(0xFFf4e2e2),
-    surface: Color(0xFF0a0a0a),
-    onSurface: Color(0xFFf4e2e2),
+    surface: Color(0xffd9d9d9),
+    onSurface: Color(0xffb0b0b0),
   ),
   textTheme: const TextTheme(
       titleMedium: TextStyle(
@@ -28,15 +28,21 @@ final ThemeData lightTheme = ThemeData(
         // fontWeight: FontWeight.bold,
         // letterSpacing: 0.15,
       ),
+      bodyLarge: TextStyle(
+        fontFamily: "PoppinsMedium",
+        fontSize: 20.0,
+        color: Color(0xff000000),
+        fontWeight: FontWeight.bold,
+      ),
       bodyMedium: TextStyle(
         fontFamily: "PoppinsRegular",
         fontSize: 20.0,
-        color: Color(0xFFf4e2e2),
+        color: Color(0xff000000),
       ),
       titleSmall: TextStyle(
         fontFamily: "PoppinsLight",
         fontSize: 16.0,
-        color: Color(0xFFf4e2e2),
+        color: Color(0xff000000),
       )),
   useMaterial3: true,
 );
@@ -54,7 +60,7 @@ final ThemeData darkTheme = ThemeData(
     onSecondary: Color(0xFF333333),
     onError: Color(0xFFf4e2e2),
     surface: Color(0xFF262626),
-    onSurface: Color(0xFFf4e2e2),
+    onSurface: Color(0xff333333),
   ),
   textTheme: const TextTheme(
     titleMedium: TextStyle(
@@ -99,17 +105,17 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool _isConnected = false;
+  bool _isConnected = true;
 
   @override
   void initState() {
     super.initState();
 
-    isDeviceConnected().then((bool isConnected) {
-      setState(() {
-        _isConnected = isConnected;
-      });
-    });
+    // isDeviceConnected().then((bool isConnected) {
+    //   setState(() {
+    //     _isConnected = isConnected;
+    //   });
+    // });
   }
 
   @override

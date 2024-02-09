@@ -5,6 +5,7 @@ class ThemeContext extends ChangeNotifier {
 
   setTheme(ThemeMode newTheme) {
     _themeMode = newTheme;
+    notifyListeners();
   }
 
   ThemeMode get themeMode => _themeMode;
