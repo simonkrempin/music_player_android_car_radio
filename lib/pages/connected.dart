@@ -1,5 +1,6 @@
 import "package:flutter/material.dart";
 
+import "../components/bluetooth_player.dart";
 import "../components/button_controls.dart";
 import "../components/volume_slider.dart";
 
@@ -39,7 +40,9 @@ class _ConnectedState extends State<Connected> {
               ),
             ),
             Flexible(
-              child: Center(),
+              child: Center(
+                child: BluetoothPlayer(),
+              ),
             ),
             SizedBox(
                 width: 200,
