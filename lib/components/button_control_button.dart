@@ -9,14 +9,16 @@ class ButtonControlButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  _ButtonControlButtonState createState() => _ButtonControlButtonState();
+  State<ButtonControlButton> createState() => _ButtonControlButtonState();
 }
 
 class _ButtonControlButtonState extends State<ButtonControlButton> {
   @override
   build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        widget.onPressed();
+      },
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
           widget.selectedState ? Theme.of(context).colorScheme.onBackground : Theme.of(context).colorScheme.onSecondary,
