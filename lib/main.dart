@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import "context/theme_context.dart";
 import "pages/disconnected.dart";
 import "pages/connected.dart";
 
 final ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme(
-    background: Color(0xFF0a0a0a),
+    background: Color(0xffffffff),
     brightness: Brightness.light,
     primary: Color(0xFFe87f7f),
     onPrimary: Color(0xFFf4e2e2),
@@ -82,7 +84,10 @@ final ThemeData darkTheme = ThemeData(
 );
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (_) => ThemeContext(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatefulWidget {
@@ -94,7 +99,10 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   bool _isConnected = true;
-  ThemeMode _themeMode = ThemeMode.dark;
+
+  listenerFunction() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +111,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: _themeMode,
+      themeMode: Provider.of<ThemeContext>(context).themeMode,
       home: _isConnected ? const Connected() : const Disconnected(),
     );
   }

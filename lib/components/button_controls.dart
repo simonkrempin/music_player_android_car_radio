@@ -1,6 +1,7 @@
 import "package:flutter/material.dart";
-import 'package:screen_brightness/screen_brightness.dart';
+import "package:provider/provider.dart";
 
+import "../context/theme_context.dart";
 import "./button_control_button.dart";
 import "../services/screen_brightness.dart";
 
@@ -11,13 +12,7 @@ class ButtonControls extends StatefulWidget {
   State<ButtonControls> createState() => _ButtonControlsState();
 }
 
-enum ThemeModes {
-  dark,
-  light,
-}
-
 class _ButtonControlsState extends State<ButtonControls> {
-  ThemeModes _selectedMode = ThemeModes.dark;
   Brightness _selectedBrightness = Brightness.low;
 
   @override
@@ -33,6 +28,8 @@ class _ButtonControlsState extends State<ButtonControls> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeContext>(context, listen: false);
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -94,21 +91,21 @@ class _ButtonControlsState extends State<ButtonControls> {
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedMode = ThemeModes.dark;
+                      themeProvider.setTheme(ThemeMode.dark);
                     });
                   },
                   icon: Icons.dark_mode_rounded,
-                  selectedState: _selectedMode == ThemeModes.dark,
+                  selectedState: themeProvider.themeMode == ThemeMode.dark,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedMode = ThemeModes.light;
+                      themeProvider.setTheme(ThemeMode.light);
                     });
                   },
                   icon: Icons.light_mode_rounded,
-                  selectedState: _selectedMode == ThemeModes.light,
+                  selectedState: themeProvider.themeMode == ThemeMode.light,
                 ),
               ],
             ),
