@@ -1,16 +1,52 @@
 import "package:flutter/material.dart";
-import "package:music_player_android_car_radio/components/button_control_button.dart";
+import 'package:screen_brightness/screen_brightness.dart';
+
+import "./button_control_button.dart";
 
 class ButtonControls extends StatefulWidget {
   const ButtonControls({super.key});
 
   @override
-  _ButtonControlsState createState() => _ButtonControlsState();
+  State<ButtonControls> createState() => _ButtonControlsState();
+}
+
+enum BrightnessSections {
+  low,
+  medium,
+  high,
+}
+
+enum ThemeModes {
+  dark,
+  light,
 }
 
 class _ButtonControlsState extends State<ButtonControls> {
-  int _selectedMode = 0;
-  int _selectedBrightness = 0;
+  ThemeModes _selectedMode = ThemeModes.dark;
+  BrightnessSections _selectedBrightness = BrightnessSections.low;
+
+  @override
+  void initState() {
+    super.initState();
+
+    ScreenBrightness().current.then((double brightness) {
+      setState(() {
+        _selectedBrightness = _brightnessSections(brightness);
+      });
+    });
+  }
+
+  BrightnessSections _brightnessSections(double brightness) {
+    if (brightness < 0.33) {
+      return BrightnessSections.low;
+    }
+
+    if (brightness < 0.66) {
+      return BrightnessSections.medium;
+    }
+
+    return BrightnessSections.high;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,31 +65,31 @@ class _ButtonControlsState extends State<ButtonControls> {
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = 0;
+                      _selectedBrightness = BrightnessSections.low;
                     });
                   },
                   icon: Icons.brightness_1_outlined,
-                  selectedState: _selectedBrightness == 0,
+                  selectedState: _selectedBrightness == BrightnessSections.low,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = 1;
+                      _selectedBrightness = BrightnessSections.medium;
                     });
                   },
                   icon: Icons.brightness_6_rounded,
-                  selectedState: _selectedBrightness == 1,
+                  selectedState: _selectedBrightness == BrightnessSections.medium,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedBrightness = 2;
+                      _selectedBrightness = BrightnessSections.high;
                     });
                   },
                   icon: Icons.brightness_high_rounded,
-                  selectedState: _selectedBrightness == 2,
+                  selectedState: _selectedBrightness == BrightnessSections.high,
                 ),
               ],
             ),
@@ -72,21 +108,21 @@ class _ButtonControlsState extends State<ButtonControls> {
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedMode = 0;
+                      _selectedMode = ThemeModes.dark;
                     });
                   },
                   icon: Icons.dark_mode_rounded,
-                  selectedState: _selectedMode == 0,
+                  selectedState: _selectedMode == ThemeModes.dark,
                 ),
                 const SizedBox(height: 10),
                 ButtonControlButton(
                   onPressed: () {
                     setState(() {
-                      _selectedMode = 1;
+                      _selectedMode = ThemeModes.light;
                     });
                   },
                   icon: Icons.light_mode_rounded,
-                  selectedState: _selectedMode == 1,
+                  selectedState: _selectedMode == ThemeModes.light,
                 ),
               ],
             ),
