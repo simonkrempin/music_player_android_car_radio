@@ -1,4 +1,4 @@
-import "package:flutter/material.dart" show ChangeNotifier, ThemeMode, VoidCallback;
+import "package:flutter/material.dart" show ChangeNotifier, ThemeMode;
 
 class ThemeContext extends ChangeNotifier {
   ThemeMode _themeMode = ThemeMode.dark;

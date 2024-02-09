@@ -111,7 +111,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: lightTheme,
       darkTheme: darkTheme,
-      themeMode: Provider.of<ThemeContext>(context).themeMode,
+      themeMode: Provider.of<ThemeContext>(context, listen: true).themeMode,
       home: _isConnected ? const Connected() : const Disconnected(),
     );
   }
